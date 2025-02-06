@@ -12,9 +12,11 @@ module.exports = defineConfig({
       authCors: process.env.AUTH_CORS!,
       jwtSecret: process.env.JWT_SECRET || "supersecret",
       cookieSecret: process.env.COOKIE_SECRET || "supersecret",
+      port: parseInt(process.env.PORT || "9000", 10),  // Asegurar que use el puerto asignado por Render
     }
   },
   admin: {
-    backendUrl: process.env.MEDUSA_BACKEND_URL,
+    backendUrl: process.env.MEDUSA_BACKEND_URL || `https://${process.env.RENDER_EXTERNAL_HOSTNAME}`,
   },
 })
+
